@@ -1,0 +1,18 @@
+﻿@model WebApplication1.ViewModels.PieListViewModel
+
+<html>
+<body>
+    <div>
+        <!-- Add a link to the "Add Pie" action method -->
+        <a asp-action="AddPie" class="btn btn-primary">Add Pie</a>
+        @foreach (var pie in Model.Pies)
+        {
+            <div>
+                <h2>@pie.Name</h2>
+                <h3>@pie.Price.ToString("c")</h3>
+                <h4>@pie.Category.CategoryName</h4>
+            </div>
+        }
+    </div>
+</body>
+</html>

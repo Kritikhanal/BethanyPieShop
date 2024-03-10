@@ -1,0 +1,58 @@
+﻿@model WebApplication1.ViewModels.PieListViewModel
+
+<h1>@Model.CurrentCategory</h1>
+<div class="d-flex justify-content-end" >
+    <button type="button" class="btn btn-primary">
+        <a class="text-white"asp-controller="Pie" class=""
+           asp-action="AddPie">
+            Add
+        </a>
+        </button>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+
+    @foreach (var pie in Model.Pies)
+    {
+        <div class="col">
+           
+            <div class="card pie-card">
+                <img src="@pie.ImageThumbnailUrl" class="card-img-top" alt="@pie.Name">
+                <div class="card-body pie-button">
+                    <h4 class="d-grid">
+                    </h4>
+
+
+                    <div class="d-flex justify-content-between mt-2">
+                        <h2 class="text-start">
+                            <a asp-controller="Pie"
+                               asp-action="Details"
+                               asp-route-id="@pie.PieId"
+                               class="pie-link">@pie.Name</a>
+
+                        </h2>
+                        <h5 class="text-nowrap">
+                            @pie.Price.ToString("c")
+                        </h5>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div>
+
+                            <a asp-controller="Pie" class="bg-dark text-white text-decoration-none px-5 py-1" asp-route-id="@pie.PieId" asp-action="Update">Edit Pie</a>
+                        </div>
+                        <div>
+                            <form asp-controller="Pie" asp-route-id="@pie.PieId" asp-action="Delete" method="post">
+                                <button type="submit" class="bg-danger border-none text-white">Delete Pie</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
